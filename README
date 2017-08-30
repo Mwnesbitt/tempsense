@@ -1,0 +1,13 @@
+This project monitors the temperature of my CPU
+
+Twice (after I left the computer on overnight rather than shutting down), the computer shut down completely without warning.  After some online searching, I suspected that my CPU was too hot and there was a hardware override of the system to prevent CPU damage.  Unfortunately, there was no way for me to verify this since I couldn't find any kind of CPU temperature log.  I cleaned my fan (which was very dirty), but in case this happens again, I want to have a temperature log to check to see if my CPU was too hot.  I installed lm-sensors and wrote the script mysensors.py to extract the data and used a cron job to store it in a log.  sensorgraph.py is for visualizing how my temp changes over time.
+
+Cron job: 
+0,15,30,45 * * * * /path/to/mysensors.py >> /path/to/sensors.log
+
+Issues:
+1. Currently only works for my CPU-- I didn't make the parsing of the output of lm-sensors smart enough to handle all output-- just my computer's
+2. Doesn't capture all output from lm-sensors. (I'm not sure what it all is-- I grabbed the cores for my CPU and that's what I really care about, I think.)
+3. Log continuously gets longer -- needs logrotate to prevent the file from getting out of control.
+
+It's very interesting to see the output of my computer after certain activities.  Video chatting raises the CPU temp ~15C!
