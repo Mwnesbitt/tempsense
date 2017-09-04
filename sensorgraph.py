@@ -28,7 +28,11 @@ for line in logdata:
 #print(dates)
 #print(core0temps)
 #print(core1temps)
+cutoff = datetime.datetime.now() - datetime.timedelta(days=2)
+dates48 = list(filter(lambda x: x>cutoff, dates))
+core0temps48 = core0temps[-len(dates48):]
+core1temps48 = core1temps[-len(dates48):]
 
-plt.plot(dates, core0temps, dates, core1temps)
+plt.plot(dates48, core0temps48, dates48, core1temps48)
 plt.show()
 
