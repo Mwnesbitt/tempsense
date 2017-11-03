@@ -11,3 +11,16 @@ Issues:
 3. Log continuously gets longer -- needs logrotate to prevent the file from getting out of control.
 
 It's very interesting to see the output of my computer after certain activities.  Video chatting raises the CPU temp ~15C!
+
+
+Logrotate config:
+{
+    rotate 4
+    weekly
+    missingok
+    notifempty
+    delaycompress
+    compress
+    create 640 mark mark
+}
+
